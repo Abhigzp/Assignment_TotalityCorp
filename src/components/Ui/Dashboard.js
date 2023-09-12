@@ -6,7 +6,7 @@ import CardsData from "./CartData";
 import { addToCart } from "../../redux/features/cartSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-
+import Headers from "./Headers";
 const Home = () => {
   const [cartData, setCartData] = useState(CardsData);
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ const Home = () => {
   };
   return (
     <>
+    
+<Headers />
       <section className="iteam_section mt-4 container">
         <h2 className="px-4" style={{ fontWeight: 400 }}>
           E-com web App

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./cartstyle.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart,removeToCart ,removeSingleIteams,emptycartIteam} from '../redux/features/cartSlice';
+import { addToCart,removeToCart ,removeSingleIteams,emptycartIteam} from '../../redux/features/cartSlice';
 import toast from 'react-hot-toast';
 
 
