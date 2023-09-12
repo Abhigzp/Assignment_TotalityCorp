@@ -1,40 +1,50 @@
-import React, { useState } from 'react';
-import './Form.css'
+import React, { useState } from "react";
+import "./Form.css";
 import { useForm } from "react-hook-form";
-const LoginForm = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const { register, handleSubmit,watch,formState: { errors } } = useForm({ defaultValues: {example: "", exampleRequired: "" } });
-  const handleLogin = () => {
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
+import { useNavigate } from "react-router-dom";
 
-    if (username === storedUsername && password === storedPassword) {
-      onLogin();
+const LoginForm = ({ onLogin }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate=useNavigate()
+  const onSubmit = () => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+
+    if (email === storedEmail && password === storedPassword) {
+    navigate("/landingpage")
     } else {
-      alert('Invalid username or password');
+      alert("Invalid email or password");
     }
   };
 
   return (
     <>
-      <h1> login form</h1>
-    <form
-    onSubmit={handleSubmit((data) => {
-      alert(JSON.stringify(data));
-    })}
-  >
-    <label>Email</label>
-    <input {...register("email")} defaultValue="email..." />
-    {errors.email && <p>This field is required</p>}
-    <label>Password</label>
-    <input
-      {...register("PasswordRequired", { required: true, maxLength: 10 })}
-    />
-    {errors.exampleRequired && <p>This field is required</p>}
-    <input type="submit" />
-  </form>
+      <h1>Login Form</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>Email</label>
+        <input
+          type="email"
+          {...register("email", { required: true })}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email..."
+        />
+        {errors.email && <p>This field is required</p>}
+        <label>Password</label>
+        <input
+          type="password"
+          {...register("password", { required: true, maxLength: 10 })}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password..."
+        />
+        {errors.password && <p>This field is required (max 10 characters)</p>}
+        <input type="submit" />
+      </form>
     </>
   );
 };
