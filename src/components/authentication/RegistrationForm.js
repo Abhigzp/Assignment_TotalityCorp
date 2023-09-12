@@ -1,9 +1,11 @@
 import React,{useState} from "react";
 import "./Form.css";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
-const [userData,setUserData]=useState([])
+const [userData,setUserData]=useState([]);
+const navigate=useNavigate();
   const {
     register,
     handleSubmit,
@@ -47,6 +49,9 @@ const [userData,setUserData]=useState([])
           </p>
         )}
         <input type="submit" />
+        <div>
+        <p>if you are already rejistered with us ? <span onClick={()=>navigate('/')}>Login</span> </p>
+        </div>
       </form>
     </>
   );

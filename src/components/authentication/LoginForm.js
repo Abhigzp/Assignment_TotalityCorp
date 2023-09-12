@@ -24,8 +24,8 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <>
-      <h1>Login Form</h1>
+    <div>
+               <h1>Login Form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
         <input
@@ -44,8 +44,13 @@ const LoginForm = ({ onLogin }) => {
         />
         {errors.password && <p>This field is required (max 10 characters)</p>}
         <input type="submit" />
+        <div>
+        <p>if you are not rejistered with us ? <span onClick={()=>navigate('/register')}>Sign in</span> </p>
+        </div>
+       
       </form>
-    </>
+       
+    </div>
   );
 };
 
